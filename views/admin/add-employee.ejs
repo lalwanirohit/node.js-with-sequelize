@@ -1,0 +1,28 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <div class="ms-4 mt-4">
+        <form class="row g-3" action="<%= action %>" method="POST">
+            <legend>Add Employee</legend>
+            <div class="col-md-2">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" value="<% if(editMode && employee.name) { %> <%=employee.name%> <% } %>" class="form-control" placeholder="enter name">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" value="<% if(editMode && employee.email) { %> <%=employee.email%> <% } %>" class="form-control" placeholder="enter email">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Designation</label>
+                <input type="text" name="designation" value="<% if(editMode && employee.designation) { %> <%=employee.designation%> <% } %>" class="form-control" placeholder="enter designation">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-info text-white" href="/admin">Back To Grid</a>
+            </div>
+            <% if(editMode && employee && employee.id) { %>
+                <input type="hidden" name="employeeId" value="<%=employee.id%>">
+            <% } %>
+        </form>
+    </div>
+</body>
+</html>

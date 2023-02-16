@@ -1,0 +1,44 @@
+<%- include('includes/head.ejs') %>
+<body>
+    <a class="ms-3 mt-4 btn btn-success btn-sm" aria-current="page" href="/admin/add-employee">+ Add Employee</a>
+    <% if(employees.length > 0) { %>
+        <h3 class="ms-3 mt-4"> Employee List </h3>
+        <table class="ms-3 mt-3 table table-light table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Designation</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for (let employee of employees) { %>
+                    <% let isUpdatedAt = (employee.updatedAt) ? employee.updatedAt : null; %>
+                    <% let updatedAt = null; %>
+                    <% let createdMonth = employee.createdAt.getMonth()+1; %>
+                    <% if(isUpdatedAt) { %>
+                        <% let updatedMonth = employee.updatedAt.getMonth()+1; %>
+                        <%  updatedAt = employee.updatedAt.getDate() + "-" + updatedMonth + "-" + employee.updatedAt.getFullYear(); %>
+                    <% } %>
+                    <tr>
+                        <td><%= employee.id %></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.email %></td>
+                        <td><%= employee.designation %></td>
+                        <td><%= employee.createdAt.getDate() + "-" + createdMonth + "-" + employee.createdAt.getFullYear(); %></td>
+                        <td><%= updatedAt %></td>
+                        <td><a class="btn btn-warning btn-sm" href="/admin/edit-employee/<%= employee.id %>?edit=true">Edit</a> | <a class="btn btn-danger btn-sm" href="/admin/delete-employee/<%= employee.id %>">Delete</a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <h3 class="ms-3 mt-4"> No Employees Yet. </h3>
+    <% } %>
+</body>
+</html>
