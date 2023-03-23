@@ -10,7 +10,9 @@
   "author": "Rohit Lalwani",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
+    "events": "^3.3.0",
     "express": "^4.18.2",
     "mysql2": "^3.1.2",
     "sequelize": "^6.28.0"
